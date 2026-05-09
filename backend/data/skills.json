@@ -1,0 +1,38 @@
+{
+  "programming_languages": [
+    "python",
+    "java",
+    "c++",
+    "javascript"
+  ],
+  "machine_learning": [
+    "machine learning",
+    "deep learning",
+    "neural network",
+    "tensorflow",
+    "pytorch",
+    "scikit learn"
+  ],
+  "data": [
+    "sql",
+    "mysql",
+    "postgresql",
+    "mongodb",
+    "pandas",
+    "numpy"
+  ],
+  "web": [
+    "html",
+    "css",
+    "react",
+    "node",
+    "fastapi",
+    "flask"
+  ],
+  "tools": [
+    "git",
+    "docker",
+    "aws",
+    "linux"
+  ]
+}

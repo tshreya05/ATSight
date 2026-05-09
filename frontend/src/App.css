@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.topbar h1 {
+  font-size: 1.4rem;
+}
+
+.panel,
+.table-panel,
+.card {
+  background: #111827;
+  border: 1px solid #293041;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+textarea,
+input,
+select,
+button {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 12px 0;
+}
+
+.dropzone {
+  border: 1px dashed #60a5fa;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.filename-list span {
+  display: inline-block;
+  margin: 6px 6px 0 0;
+  padding: 4px 8px;
+  background: #1f2937;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tabs button.active {
+  background: #2563eb;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.actions a {
+  color: #93c5fd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #263046;
+  padding: 8px;
+  text-align: left;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.rubric-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 4px 0;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.hire {
+  background: #065f46;
+}
+
+.maybe {
+  background: #854d0e;
+}
+
+.reject {
+  background: #7f1d1d;
+}
+
+.error {
+  color: #fca5a5;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-content {
+  width: min(520px, 95vw);
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 860px) {
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
