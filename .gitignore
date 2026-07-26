@@ -17,3 +17,4 @@ coverage/
 *.pth
 *.h5
 *.ckpt
+venv
