@@ -1,103 +1,592 @@
-# ATSight - AI Resume & LinkedIn Shortlisting Agent
+# ATSight - AI Resume Intelligence Platform
 
-ATSight is a full-stack FastAPI + React application for HR teams to shortlist candidates using multi-resume ingestion, LinkedIn profile ingestion, semantic matching, rubric scoring, ranking, AI explanations, and downloadable shortlist reports.
+# One Platform. Two Perspectives.
+### Candidate ATS Optimization + Recruiter AI Shortlisting
 
-## Features
-- Multi-file resume upload (`.pdf`, `.docx`) with upload progress and validation
-- LinkedIn profile ingestion via pasted text or JSON upload (no scraping)
-- Structured candidate extraction (name, contacts, skills, education, certifications, projects, experience, years)
-- Job description parser using LangChain PromptTemplate + structured JSON output
-- Semantic similarity with Sentence Transformers (`all-MiniLM-L6-v2`) + cosine similarity
-- Secondary TF-IDF similarity included for additional signal
-- Rubric-based scoring with weighted categories:
-  - Skills Match (30%)
-  - Experience Relevance (25%)
-  - Education & Certifications (15%)
-  - Projects / Portfolio (20%)
-  - Communication Quality (10%)
-- Recommendation engine: `Hire` / `Maybe` / `Reject`
-- Candidate ranking table and candidate detail cards
-- AI-generated hiring explanations powered by `Gemini 1.5 Pro` via official Google SDK
-- Human-in-the-loop override logging
-- Downloadable shortlist reports in PDF and JSON
+An AI-powered Resume Intelligence Platform that helps **job seekers optimize resumes for Applicant Tracking Systems (ATS)** while enabling **recruiters to intelligently shortlist candidates** using semantic search, AI-powered scoring, and explainable hiring recommendations.
 
-## Architecture
-- **Routes:** `backend/routes/shortlist.py`
-- **Services:** shortlisting, report generation, override persistence
-- **Parsers:** JD parser, resume parser, LinkedIn parser
-- **Embeddings:** SentenceTransformer semantic matcher
-- **Scoring:** rubric engine with weighted categories
-- **Models:** Pydantic schemas for structured payloads
-- **Frontend:** single dashboard for input, ranking, candidate cards, exports, overrides
+---
 
-## Tech Stack
-- Backend: FastAPI, Pydantic, python-dotenv, LangChain, Google Generative AI SDK, Sentence Transformers, scikit-learn, pdfplumber, python-docx, ReportLab
-- Frontend: React + Vite + Axios
-- Optional vector tooling: FAISS
+# Table of Contents
 
-## Folder Structure (Key Paths)
-- `backend/main.py` - app entrypoint and middleware
-- `backend/routes/shortlist.py` - shortlist/report/override APIs
-- `backend/parsers/candidate_parser.py` - resume + LinkedIn parsing
-- `backend/parsers/jd_parser.py` - JD extraction
-- `backend/embeddings/semantic_matcher.py` - embeddings + similarity
-- `backend/scoring/rubric.py` - weighted rubric scoring
-- `backend/services/shortlist_service.py` - ranking + explanations
-- `backend/services/report_service.py` - PDF/JSON reports
-- `backend/services/override_store.py` - override logs
-- `frontend/src/components/ShortlistDashboard.jsx` - main HR UI
+- Overview
+- Features
+- Candidate Portal
+- Recruiter Portal
+- AI Pipeline
+- Architecture
+- Technology Stack
+- Folder Structure
+- Installation
+- Workflows
+- ATS Scoring Methodology
+- Security
+- Future Improvements
 
-## Setup
-1. Create Python env and install dependencies:
-   - `pip install -r requirements.txt`
-2. Configure environment:
-   - copy `.env.example` to `.env`
-   - set `GEMINI_API_KEY`
-   - optionally set `AT_SIGHT_API_KEY` for API auth middleware
-3. Run backend:
-   - `uvicorn backend.main:app --reload`
-4. Run frontend:
-   - `cd frontend && npm install && npm run dev`
+---
 
-## Workflow
-1. Paste JD.
-2. Upload multiple resumes.
-3. Add LinkedIn text or JSON (optional).
-4. Run shortlisting.
-5. Review ranking table + score cards + missing skills.
-6. Apply HR overrides.
-7. Download PDF/JSON reports.
+# Overview
 
-## AI Architecture Rationale
-- **LangChain:** standardized prompts, deterministic structured outputs, cleaner model chaining
-- **SentenceTransformer embeddings:** robust semantic matching for sparse resume keyword variation
-- **`Gemini 1.5 Pro`:** deterministic, concise generation for JD parsing and hiring explanations
-- **TF-IDF fallback:** interpretable lexical baseline for sanity checking semantic scores
+Modern recruitment has two major challenges:
 
-## Security Mitigations
-- **Prompt injection mitigation**
-  - sanitize/normalize inputs before scoring
-  - use structured JSON output parsing for JD extraction
-  - validate request payloads with Pydantic
-- **Data privacy / PII**
-  - avoid persisting raw resumes by default
-  - persist only minimal override metadata for auditability
-- **API key security**
-  - `.env` based key loading (`GEMINI_API_KEY`, optional `AT_SIGHT_API_KEY`)
-  - no hardcoded secrets in code
-- **Hallucination reduction**
-  - low temperature deterministic prompting
-  - bounded and schema-validated output fields
-- **Unauthorized access**
-  - optional `x-api-key` middleware in `backend/main.py`
+- **Candidates** often get rejected by Applicant Tracking Systems because of missing keywords, weak formatting, or poor resume optimization.
+- **Recruiters** spend hours manually reviewing hundreds of resumes for a single job posting.
 
-## Environment Variables
-- `GEMINI_API_KEY` - required for AI explanations/JD chain
-- `AT_SIGHT_API_KEY` - optional backend route protection
+ATSight solves both problems within a single AI-powered platform.
 
-## Future Improvements
-- Persistent database-backed candidate and override history
-- Batch async processing queue for very large hiring drives
-- Better NER extraction and custom skill ontology tuning
-- Recruiter calibration mode for score threshold tuning
+## Candidate Portal
 
+Candidates can:
+
+- Upload resumes
+- Compare resumes against Job Descriptions
+- Measure ATS compatibility
+- Identify missing keywords
+- Receive AI suggestions
+- Download ATS reports
+
+## Recruiter Portal
+
+Recruiters can:
+
+- Upload multiple resumes
+- Parse candidate information
+- Rank applicants
+- Compare candidates
+- Receive explainable hiring recommendations
+- Export reports
+
+---
+
+# Features
+
+## Candidate ATS Analyzer
+
+### Resume Upload
+
+- PDF Resume Support
+- DOCX Resume Support
+- Drag-and-Drop Upload
+- Resume Validation
+
+---
+
+### ATS Score Analysis
+
+Measures
+
+- ATS Compatibility Score
+- Resume Formatting
+- Keyword Density
+- Keyword Match
+- Missing Skills
+- Semantic Similarity
+- Experience Relevance
+- Education Score
+- Project Score
+- Communication Score
+
+---
+
+### AI Resume Improvement
+
+Gemini generates suggestions for
+
+- Better resume summary
+- Better action verbs
+- Resume restructuring
+- Missing technologies
+- Missing certifications
+- Better project descriptions
+- Resume formatting improvements
+- Keyword optimization
+
+---
+
+### Resume vs Job Description Matching
+
+Uses Sentence Transformers to calculate
+
+- Semantic Match %
+- Skill Match %
+- Experience Match %
+- Overall ATS Score
+
+---
+
+### Downloadable Reports
+
+- ATS Report PDF
+- JSON Report
+- Resume Insights
+
+---
+
+# Recruiter AI Shortlisting
+
+## Resume Parsing
+
+Automatically extracts
+
+- Candidate Name
+- Contact Details
+- Skills
+- Experience
+- Projects
+- Education
+- Certifications
+- Years of Experience
+
+---
+
+## LinkedIn Parsing
+
+Supports
+
+- LinkedIn Text
+- LinkedIn JSON Export
+
+(No scraping required)
+
+---
+
+## AI Job Description Parser
+
+Automatically extracts
+
+- Required Skills
+- Experience
+- Certifications
+- Responsibilities
+- Education Requirements
+
+using LangChain Prompt Templates and structured JSON outputs.
+
+---
+
+## Semantic Matching
+
+Uses
+
+- SentenceTransformer
+- Cosine Similarity
+- TF-IDF
+
+to understand semantic similarity instead of keyword matching.
+
+---
+
+## Weighted Rubric Scoring
+
+| Category | Weight |
+|-----------|---------|
+| Skills Match | 30% |
+| Experience | 25% |
+| Projects | 20% |
+| Education & Certifications | 15% |
+| Communication | 10% |
+
+---
+
+## AI Recommendations
+
+Candidates are automatically classified as
+
+- Hire
+- Maybe
+- Reject
+
+along with detailed AI explanations.
+
+---
+
+## Candidate Ranking Dashboard
+
+Features
+
+- Ranking Table
+- Candidate Cards
+- Missing Skills
+- Score Breakdown
+- Recruiter Notes
+- HR Override Logging
+
+---
+
+## Report Generation
+
+Download
+
+- PDF Reports
+- JSON Reports
+
+---
+
+# AI Pipeline
+
+## Candidate Pipeline
+
+```
+Resume
+     │
+     ▼
+Resume Parser
+     │
+     ▼
+Job Description Parser
+     │
+     ▼
+Keyword Extraction
+     │
+     ▼
+Sentence Embeddings
+     │
+     ▼
+Semantic Matching
+     │
+     ▼
+ATS Score Engine
+     │
+     ▼
+Gemini AI Suggestions
+     │
+     ▼
+ATS Report
+```
+
+---
+
+## Recruiter Pipeline
+
+```
+Multiple Resumes
+        │
+        ▼
+Resume Parser
+        │
+        ▼
+Candidate Extraction
+        │
+        ▼
+LinkedIn Parsing
+        │
+        ▼
+Job Description Parsing
+        │
+        ▼
+Sentence Embeddings
+        │
+        ▼
+Semantic Matching
+        │
+        ▼
+Weighted Rubric
+        │
+        ▼
+Ranking Engine
+        │
+        ▼
+Gemini Hiring Explanation
+        │
+        ▼
+Recruiter Dashboard
+```
+
+---
+
+# Architecture
+
+```
+                    ATSight
+
+        ┌──────────────────────────┐
+        │        Frontend          │
+        │       React + Vite       │
+        └────────────┬─────────────┘
+                     │
+                     ▼
+             FastAPI Backend
+                     │
+ ┌──────────────┬──────────────┬──────────────┐
+ │              │              │              │
+ ▼              ▼              ▼              ▼
+
+Resume      JD Parser     LinkedIn      ATS Engine
+Parser                      Parser
+
+ │              │              │
+ └──────────────┴──────────────┘
+                │
+                ▼
+     Sentence Transformer Embeddings
+                │
+                ▼
+         Cosine Similarity Engine
+                │
+                ▼
+         Rubric Scoring Engine
+                │
+                ▼
+      Gemini AI Explanation Engine
+                │
+                ▼
+          Recruiter Dashboard
+                │
+                ▼
+          Candidate Dashboard
+```
+
+---
+
+# Technology Stack
+
+## Backend
+
+- FastAPI
+- Pydantic
+- LangChain
+- Google Gemini 1.5 Pro
+- Sentence Transformers
+- Scikit-learn
+- pdfplumber
+- python-docx
+- ReportLab
+- python-dotenv
+
+---
+
+## Frontend
+
+- React
+- Vite
+- Axios
+- Tailwind CSS
+- Framer Motion
+
+---
+
+## Machine Learning
+
+- SentenceTransformer (all-MiniLM-L6-v2)
+- Cosine Similarity
+- TF-IDF
+- Weighted Rubric Scoring
+- Prompt Engineering
+- Semantic Search
+
+---
+
+# Folder Structure
+
+```
+ATSight
+
+backend/
+│
+├── routes/
+│   ├── candidate.py
+│   ├── recruiter.py
+│   ├── shortlist.py
+│
+├── parsers/
+│   ├── resume_parser.py
+│   ├── linkedin_parser.py
+│   ├── jd_parser.py
+│
+├── embeddings/
+│   └── semantic_matcher.py
+│
+├── scoring/
+│   ├── ats_score.py
+│   ├── rubric.py
+│   └── keyword_engine.py
+│
+├── services/
+│   ├── candidate_service.py
+│   ├── recruiter_service.py
+│   ├── report_service.py
+│   └── override_store.py
+│
+frontend/
+│
+├── Candidate Dashboard
+├── Recruiter Dashboard
+├── ATS Report
+├── Candidate Cards
+├── Ranking Table
+```
+
+---
+
+# Installation
+
+## Backend
+
+```bash
+git clone https://github.com/yourusername/ATSight.git
+
+cd ATSight
+
+pip install -r requirements.txt
+```
+
+Run
+
+```bash
+uvicorn backend.main:app --reload
+```
+
+---
+
+## Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+---
+
+# Candidate Workflow
+
+```
+Upload Resume
+      │
+      ▼
+Paste Job Description
+      │
+      ▼
+Resume Parsing
+      │
+      ▼
+Keyword Analysis
+      │
+      ▼
+Semantic Matching
+      │
+      ▼
+ATS Score Generation
+      │
+      ▼
+Gemini Suggestions
+      │
+      ▼
+Download ATS Report
+```
+
+---
+
+# Recruiter Workflow
+
+```
+Upload Multiple Resumes
+            │
+            ▼
+Paste Job Description
+            │
+            ▼
+Resume Parsing
+            │
+            ▼
+LinkedIn Parsing
+            │
+            ▼
+Semantic Matching
+            │
+            ▼
+Rubric Scoring
+            │
+            ▼
+Candidate Ranking
+            │
+            ▼
+Gemini Hiring Explanation
+            │
+            ▼
+Export Reports
+```
+
+---
+
+# ATS Scoring Methodology
+
+The Candidate ATS Score is generated using a weighted scoring engine.
+
+| Component | Weight |
+|------------|---------|
+| Keyword Match | 30% |
+| Semantic Match | 25% |
+| Experience Match | 20% |
+| Education Match | 10% |
+| Projects | 10% |
+| Resume Formatting | 5% |
+
+Final ATS Score
+
+```
+ATS Score =
+0.30 × Keyword Match +
+0.25 × Semantic Match +
+0.20 × Experience +
+0.10 × Education +
+0.10 × Projects +
+0.05 × Formatting
+```
+
+---
+
+# Security
+
+- Prompt Injection Protection
+- Schema Validation using Pydantic
+- Environment Variable Protection
+- Optional API Authentication
+- Hallucination Reduction
+- Minimal Resume Storage
+- Explainable AI Outputs
+
+---
+
+# Future Improvements
+
+- AI Mock Interview
+- Resume Heatmap
+- GitHub Profile Analysis
+- Portfolio Analyzer
+- AI Cover Letter Generator
+- LinkedIn Optimizer
+- Skill Gap Learning Roadmap
+- AI Career Coach
+- Multi-language Resume Support
+- FAISS Vector Database
+- Recruiter Analytics Dashboard
+- Persistent Candidate Database
+
+---
+
+# Why ATSight?
+
+Unlike traditional ATS systems that only help recruiters, ATSight serves **both sides of the hiring process**.
+
+### For Candidates
+
+- Measure ATS compatibility
+- Improve resume quality
+- Optimize keywords
+- Increase interview chances
+- Receive AI-powered resume suggestions
+
+### For Recruiters
+
+- Screen hundreds of resumes automatically
+- Rank candidates intelligently
+- Explain hiring decisions using AI
+- Export structured hiring reports
+- Reduce manual screening time
+
+---
+
+## ⭐ If you found this project useful, don't forget to Star the repository!
