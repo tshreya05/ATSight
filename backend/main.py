@@ -11,17 +11,17 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from backend.feedback.auto_correct import html_to_docx, improve_docx
-from backend.feedback.ai_coach import get_ai_resume_critique
-from backend.nlp.jd_matcher import calculate_jd_similarity
-from backend.nlp.preprocess import preprocess_text
-from backend.nlp.skill_extractor import extract_skills
-from backend.resume_parser.docx_parser import extract_text_from_docx
-from backend.resume_parser.pdf_parser import extract_text_from_pdf
-from backend.scoring.ats_score import calculate_ats_score
-from backend.feedback.suggestions import generate_suggestions
-from backend.routes.shortlist import router as shortlist_router, shortlist_candidates
-from backend.routes.candidate import router as candidate_router
+from feedback.auto_correct import html_to_docx, improve_docx
+from feedback.ai_coach import get_ai_resume_critique
+from nlp.jd_matcher import calculate_jd_similarity
+from nlp.preprocess import preprocess_text
+from nlp.skill_extractor import extract_skills
+from resume_parser.docx_parser import extract_text_from_docx
+from resume_parser.pdf_parser import extract_text_from_pdf
+from scoring.ats_score import calculate_ats_score
+from feedback.suggestions import generate_suggestions
+from routes.shortlist import router as shortlist_router, shortlist_candidates
+from routes.candidate import router as candidate_router
 
 try:
     from dotenv import load_dotenv
