@@ -11,3 +11,4 @@ sentence-transformers
 langchain
 google-generativeai
 faiss-cpu
+beautifulsoup4
