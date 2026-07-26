@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
 
-from backend.models.schemas import OverrideLog, OverridePayload
+from models.schemas import OverrideLog, OverridePayload
 
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"

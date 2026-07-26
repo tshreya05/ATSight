@@ -2,7 +2,7 @@ import json
 
 from langchain_core.prompts import PromptTemplate
 
-from backend.services.gemini_service import GeminiService
+from services.gemini_service import GeminiService
 
 
 def get_ai_resume_critique(resume_text, jd_text):

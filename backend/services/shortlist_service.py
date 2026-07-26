@@ -5,10 +5,10 @@ from typing import List
 
 from langchain_core.prompts import PromptTemplate
 
-from backend.embeddings.semantic_matcher import semantic_similarity, tfidf_similarity
-from backend.models.schemas import CandidateEvaluation, CandidateProfile, ParsedJobDescription, ShortlistResponse
-from backend.scoring.rubric import recommendation_from_score, score_candidate
-from backend.services.gemini_service import GeminiService
+from embeddings.semantic_matcher import semantic_similarity, tfidf_similarity
+from models.schemas import CandidateEvaluation, CandidateProfile, ParsedJobDescription, ShortlistResponse
+from scoring.rubric import recommendation_from_score, score_candidate
+from services.gemini_service import GeminiService
 
 
 def evaluate_candidates(jd: ParsedJobDescription, jd_text: str, profiles: List[CandidateProfile]) -> ShortlistResponse:

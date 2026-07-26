@@ -8,8 +8,8 @@ from typing import Any, Dict, List, Tuple
 import pdfplumber
 from docx import Document
 
-from backend.models.schemas import CandidateProfile
-from backend.utils.text import clean_text, extract_first, split_lines, unique_preserve
+from models.schemas import CandidateProfile
+from utils.text import clean_text, extract_first, split_lines, unique_preserve
 
 
 KNOWN_SKILLS = [

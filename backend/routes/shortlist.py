@@ -6,12 +6,12 @@ from typing import List, Optional
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import Response
 
-from backend.models.schemas import OverridePayload
-from backend.parsers.candidate_parser import parse_linkedin_json, parse_linkedin_text, parse_resume_file
-from backend.parsers.jd_parser import parse_job_description
-from backend.services.override_store import append_override, read_override_logs
-from backend.services.report_service import build_json_report, build_pdf_report
-from backend.services.shortlist_service import evaluate_candidates
+from models.schemas import OverridePayload
+from parsers.candidate_parser import parse_linkedin_json, parse_linkedin_text, parse_resume_file
+from parsers.jd_parser import parse_job_description
+from services.override_store import append_override, read_override_logs
+from services.report_service import build_json_report, build_pdf_report
+from services.shortlist_service import evaluate_candidates
 
 router = APIRouter(prefix="/api/v1", tags=["shortlisting"])
 

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, Tuple
 
-from backend.embeddings.semantic_matcher import overlap_ratio, semantic_similarity
-from backend.models.schemas import CandidateProfile, ParsedJobDescription, RubricCategoryScore
+from embeddings.semantic_matcher import overlap_ratio, semantic_similarity
+from models.schemas import CandidateProfile, ParsedJobDescription, RubricCategoryScore
 
 
 WEIGHTS = {

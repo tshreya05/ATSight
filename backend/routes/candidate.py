@@ -1,13 +1,13 @@
 import io
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
-from backend.nlp.jd_matcher import calculate_jd_similarity
-from backend.nlp.preprocess import preprocess_text
-from backend.nlp.skill_extractor import extract_skills
-from backend.resume_parser.docx_parser import extract_text_from_docx
-from backend.resume_parser.pdf_parser import extract_text_from_pdf
-from backend.scoring.ats_score import calculate_ats_score
-from backend.feedback.suggestions import generate_suggestions
-from backend.feedback.ai_coach import get_ai_resume_critique
+from nlp.jd_matcher import calculate_jd_similarity
+from nlp.preprocess import preprocess_text
+from nlp.skill_extractor import extract_skills
+from resume_parser.docx_parser import extract_text_from_docx
+from resume_parser.pdf_parser import extract_text_from_pdf
+from scoring.ats_score import calculate_ats_score
+from feedback.suggestions import generate_suggestions
+from feedback.ai_coach import get_ai_resume_critique
 
 router = APIRouter(prefix="/api/v1/candidate", tags=["Candidate"])
 

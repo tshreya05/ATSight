@@ -4,9 +4,9 @@ import re
 
 from langchain_core.prompts import PromptTemplate
 
-from backend.models.schemas import ParsedJobDescription
-from backend.services.gemini_service import GeminiService
-from backend.utils.text import clean_text, unique_preserve
+from models.schemas import ParsedJobDescription
+from services.gemini_service import GeminiService
+from utils.text import clean_text, unique_preserve
 
 
 def parse_job_description(jd_text: str) -> ParsedJobDescription:
