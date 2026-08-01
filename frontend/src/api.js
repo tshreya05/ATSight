@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "atsight-production.up.railway.app";
+const API_BASE = "https://atsight-production.up.railway.app/";
 
 export const shortlistCandidates = async (formData, onUploadProgress) => {
   const res = await axios.post(`${API_BASE}/api/v1/shortlist`, formData, {
